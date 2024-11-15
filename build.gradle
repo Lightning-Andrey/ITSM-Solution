@@ -37,7 +37,7 @@ dependencies {
 	implementation 'org.mapstruct:mapstruct:1.6.2'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'
-	implementation 'org.apache.commons:commons-lang3:3.0'
+	implementation 'com.aventrix.jnanoid:jnanoid:2.0.0'
 	//developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
 	annotationProcessor 'org.projectlombok:lombok'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.2'
