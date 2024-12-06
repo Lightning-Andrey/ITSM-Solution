@@ -1,6 +1,7 @@
 package by.itsm.user.controller;
 
-import by.itsm.user.entity.User;
+import by.itsm.user.dto.SignUpRequest;
+import by.itsm.user.dto.UserReadDTO;
 import by.itsm.user.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,7 @@ public class UserController {
   private UserService userService;
 
   @PostMapping("/create")
-  public ResponseEntity<User> create(@RequestBody User user) {
-    return new ResponseEntity<>(userService.save(user), HttpStatus.CREATED);
+  public ResponseEntity<UserReadDTO> create(@RequestBody SignUpRequest user) {
+    return new ResponseEntity<>(userService.createUser(user), HttpStatus.CREATED);
   }
 }

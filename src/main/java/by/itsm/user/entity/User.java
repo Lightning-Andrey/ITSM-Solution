@@ -1,10 +1,16 @@
 package by.itsm.user.entity;
 
 import by.itsm.BaseEntity;
-import by.itsm.servise_request.entity.ServiceRequest;
 import jakarta.persistence.*;
+import java.util.Collection;
 import java.util.List;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -12,7 +18,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "users")
-public class User extends BaseEntity {
+public class User extends BaseEntity implements UserDetails {
 
   @Column(nullable = false, unique = true)
   private String username;
@@ -24,6 +30,10 @@ public class User extends BaseEntity {
   private String password;
 
   @Column(nullable = false)
+  @Enumerated(EnumType.STRING)
+  private Role role;
+
+  @Column(nullable = false)
   private String firstName;
 
   private String middleName;
@@ -31,7 +41,8 @@ public class User extends BaseEntity {
   @Column(nullable = false)
   private String lastName;
 
-  @ToString.Exclude
-  @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<ServiceRequest> serviceRequests;
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return List.of(new SimpleGrantedAuthority(role.name()));
+  }
 }
