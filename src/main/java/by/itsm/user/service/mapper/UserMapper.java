@@ -1,6 +1,6 @@
 package by.itsm.user.service.mapper;
 
-import by.itsm.user.dto.SignUpRequest;
+import by.itsm.authentication.dto.SignUpRequest;
 import by.itsm.user.dto.UserReadDTO;
 import by.itsm.user.dto.UserUpdateDTO;
 import by.itsm.user.entity.User;
@@ -14,7 +14,7 @@ import org.mapstruct.ReportingPolicy;
     componentModel = MappingConstants.ComponentModel.SPRING)
 public interface UserMapper {
 
-  User dtoToEntity (SignUpRequest dto);
+  User dtoToEntity(SignUpRequest dto);
 
   UserReadDTO entityToDto(User user);
 

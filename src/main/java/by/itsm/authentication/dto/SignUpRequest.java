@@ -1,4 +1,4 @@
-package by.itsm.user.dto;
+package by.itsm.authentication.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;

@@ -1,4 +1,4 @@
-package by.itsm;
+package by.itsm.authentication.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

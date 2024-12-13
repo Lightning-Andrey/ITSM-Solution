@@ -2,7 +2,6 @@ package by.itsm.user.service;
 
 import by.itsm.exception.DataAlreadyExistsException;
 import by.itsm.exception.DataNotFoundException;
-import by.itsm.user.dto.SignUpRequest;
 import by.itsm.user.dto.UserReadDTO;
 import by.itsm.user.dto.UserUpdateDTO;
 import by.itsm.user.entity.Role;
@@ -27,7 +26,7 @@ public class UserService {
     return userRepository.save(user);
   }
 
-  public User createUser(User user) {
+  public User createUser(User user) throws DataAlreadyExistsException, DataNotFoundException {
     if (userRepository.existsByUsername(user.getUsername())) {
       throw new DataAlreadyExistsException("Пользователь с таким именем уже существует");
     }
@@ -39,9 +38,9 @@ public class UserService {
   }
 
   public User getByUsername(String username) {
-    return userRepository.findByUsername(username)
+    return userRepository
+        .findByUsername(username)
         .orElseThrow(() -> new DataNotFoundException(NOT_FOUND));
-
   }
 
   public UserReadDTO updateUser(String id, UserUpdateDTO dto) {
@@ -67,32 +66,35 @@ public class UserService {
   }
 
   /**
-   * @deprecated (при создании, роль пользователей не рекомендуется задавать при помощи этого метода, раздавайте через бд или функционал админа)
+   * @deprecated (при создании, роль пользователей не рекомендуется задавать при помощи этого
+   *     метода, раздавайте через бд или функционал админа)
    */
   @Deprecated
   public void getServiceDeskEmployeeRights() {
     var user = getCurrentUser();
-    user.setRole(Role.SERVICE_DESK_EMPLOYEE);
+    user.setRole(Role.ROLE_SERVICE_DESK_EMPLOYEE);
     save(user);
   }
 
   /**
-   * @deprecated (при создании, роль пользователей не рекомендуется задавать при помощи этого метода, раздавайте через бд или функционал админа)
+   * @deprecated (при создании, роль пользователей не рекомендуется задавать при помощи этого
+   *     метода, раздавайте через бд или функционал админа)
    */
   @Deprecated
   public void getItSupportEmployeeRights() {
     var user = getCurrentUser();
-    user.setRole(Role.IT_SUPPORT_EMPLOYEE);
+    user.setRole(Role.ROLE_IT_SUPPORT_EMPLOYEE);
     save(user);
   }
 
   /**
-   * @deprecated (при создании, роль пользователей не рекомендуется задавать при помощи этого метода, раздавайте через бд или функционал админа)
+   * @deprecated (при создании, роль пользователей не рекомендуется задавать при помощи этого
+   *     метода, раздавайте через бд или функционал админа)
    */
   @Deprecated
   public void getIncidentSpecialistRights() {
     var user = getCurrentUser();
-    user.setRole(Role.INCIDENT_SPECIALIST);
+    user.setRole(Role.ROLE_INCIDENT_SPECIALIST);
     save(user);
   }
 }
