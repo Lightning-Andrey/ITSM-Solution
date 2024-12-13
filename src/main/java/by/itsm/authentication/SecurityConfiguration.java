@@ -47,18 +47,16 @@ public class SecurityConfiguration {
                     }))
         // Настройка доступа к конечным точкам
         .authorizeHttpRequests(
-            request ->
-                request
-                    // Можно указать конкретный путь, * - 1 уровень вложенности, ** - любое
-                    // количество уровней вложенности
-                    .requestMatchers("/api/auth/*")
-                    .permitAll()
-                    .requestMatchers("/swagger-ui/**", "/swagger-resources/*", "/v3/api-docs/**")
-                    .permitAll()
-                    .requestMatchers("/endpoint", "/admin/**")
-                    .hasRole("ADMIN")
-                    .anyRequest()
-                    .authenticated())
+            request -> request.requestMatchers("/**").permitAll()
+            //                    .requestMatchers("/api/auth/*")
+            //                    .permitAll()
+            //                    .requestMatchers(
+            //                        "/swagger-ui.html", "/swagger-resources/*", "/v3/api-docs",
+            // "/actuator")
+            //                    .permitAll()
+            //                    .anyRequest()
+            //                    .authenticated()
+            )
         .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
         .authenticationProvider(authenticationProvider())
         .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
