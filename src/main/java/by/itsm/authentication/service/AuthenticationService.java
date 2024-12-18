@@ -23,7 +23,7 @@ public class AuthenticationService {
 
   public JwtAuthenticationResponse signUp(SignUpRequest request) {
 
-    var user = userMapper.dtoToEntity(request);
+    var user = userMapper.toEntity(request);
     user.setRole(Role.ROLE_CUSTOMER);
     user.setPassword(passwordEncoder.encode(request.getPassword()));
 

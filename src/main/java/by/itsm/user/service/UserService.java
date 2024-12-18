@@ -47,12 +47,12 @@ public class UserService {
     User updatedUser =
         userRepository.findById(id).orElseThrow(() -> new DataNotFoundException(NOT_FOUND));
     userMapper.updateEntity(dto, updatedUser);
-    return userMapper.entityToDto(save(updatedUser));
+    return userMapper.toDto(save(updatedUser));
   }
 
   public UserReadDTO getUserById(String id) {
     var user = userRepository.findById(id).orElseThrow(() -> new DataNotFoundException(NOT_FOUND));
-    return userMapper.entityToDto(user);
+    return userMapper.toDto(user);
   }
 
   public UserDetailsService userDetailsService() {
