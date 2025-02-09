@@ -1,0 +1,2034 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ITSM-Solution Documentation",
+    "description": "API documentation for the REST API project with Spring Security",
+    "version": "0.0.1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "chat messages",
+      "description": "Операции с сообщениями в чате"
+    },
+    {
+      "name": "chats",
+      "description": "Операции с чатами"
+    },
+    {
+      "name": "solutions",
+      "description": "Операции с решениями решений"
+    },
+    {
+      "name": "causes",
+      "description": "Операции с причинами инцидентов"
+    },
+    {
+      "name": "incidents",
+      "description": "Операции с инцидентами"
+    },
+    {
+      "name": "journals",
+      "description": "Операции с журналами инцидентов"
+    }
+  ],
+  "paths": {
+    "/api/user/{id}": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "Получить информацию о пользователе",
+        "description": "Этот эндпоинт позволяет получить информацию о пользователе по его уникальному идентификатору.",
+        "operationId": "getUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Пользователь не найден.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Пользователь найден и возвращен.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserReadDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "Обновить информацию о пользователе",
+        "description": "Этот эндпоинт позволяет обновить информацию о пользователе по его уникальному идентификатору.",
+        "operationId": "updateUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserUpdateDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "404": {
+            "description": "Пользователь не найден.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Пользователь успешно обновлен.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserReadDTO"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Неверный формат запроса или ошибка валидации.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/solutions/{id}": {
+      "get": {
+        "tags": [
+          "solutions"
+        ],
+        "summary": "Получить информацию о решении",
+        "description": "Этот эндпоинт позволяет получить информацию о решении по его уникальному идентификатору.",
+        "operationId": "getSolution",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Решениеуспешно получен.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SolutionReadDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Решение найдено.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Неверный формат запроса или ошибка валидации.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "solutions"
+        ],
+        "summary": "Обновить информацию о решении",
+        "description": "Этот эндпоинт позволяет обновить информацию о решении по его уникальному идентификатору.",
+        "operationId": "updateSolution",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SolutionUpdateDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "404": {
+            "description": "Решение найдено.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Решениеуспешно обновлено.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SolutionReadDTO"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Неверный формат запроса или ошибка валидации.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "solutions"
+        ],
+        "summary": "Удалить решение",
+        "description": "Этот эндпоинт позволяет удалить решение.",
+        "operationId": "deleteSolution",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Решение успешно удалено.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SolutionReadDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Решение не найдено.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/journals/{id}": {
+      "get": {
+        "tags": [
+          "journals"
+        ],
+        "summary": "Получить информацию об инциденте",
+        "description": "Этот эндпоинт позволяет получить информацию об инциденте по его уникальному идентификатору.",
+        "operationId": "getJournal",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Инцидент не найден.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Инцидент успешно получен.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JournalReadDTO"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Неверный формат запроса или ошибка валидации.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "journals"
+        ],
+        "summary": "Обновить информацию об инциденте",
+        "description": "Этот эндпоинт позволяет обновить информацию об инциденте по его уникальному идентификатору.",
+        "operationId": "updateJournal",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JournalUpdateDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Инцидент успешно обновлен.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JournalReadDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Инцидент не найден.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Неверный формат запроса или ошибка валидации.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "journals"
+        ],
+        "summary": "Удалить инцидент",
+        "description": "Этот эндпоинт позволяет удалить инцидент.",
+        "operationId": "deleteJournal",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Инцидент успешно удален.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JournalReadDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Инцидент не найден.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/incidents/{id}": {
+      "get": {
+        "tags": [
+          "incidents"
+        ],
+        "summary": "Получить информацию об инциденте",
+        "description": "Этот эндпоинт позволяет получить информацию об инциденте по его уникальному идентификатору.",
+        "operationId": "getIncident",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Инцидент не найден.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Инцидент успешно получен.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IncidentReadDTO"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Неверный формат запроса или ошибка валидации.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "incidents"
+        ],
+        "summary": "Обновить информацию об инциденте",
+        "description": "Этот эндпоинт позволяет обновить информацию об инциденте по его уникальному идентификатору.",
+        "operationId": "updateIncident",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IncidentUpdateDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Инцидент успешно обновлен.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IncidentReadDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Инцидент не найден.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Неверный формат запроса или ошибка валидации.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "incidents"
+        ],
+        "summary": "Удалить инцидент",
+        "description": "Этот эндпоинт позволяет удалить инцидент.",
+        "operationId": "deleteIncident",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Инцидент успешно удален.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IncidentReadDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Инцидент не найден.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/chats/{id}": {
+      "get": {
+        "tags": [
+          "chats"
+        ],
+        "summary": "Получить информацию об чате",
+        "description": "Этот эндпоинт позволяет получить информацию об чате по его уникальному идентификатору.",
+        "operationId": "getChat",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Чат успешно получен.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatReadDTO"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Неверный формат запроса или ошибка валидации.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Чат не найден.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "chats"
+        ],
+        "summary": "Обновить информацию об чате",
+        "description": "Этот эндпоинт позволяет обновить информацию об чате по его уникальному идентификатору.",
+        "operationId": "updateChat",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatUpdateDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Чат успешно обновлен.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatReadDTO"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Неверный формат запроса или ошибка валидации.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Чат не найден.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "chats"
+        ],
+        "summary": "Удалить чат",
+        "description": "Этот эндпоинт позволяет удалить чат.",
+        "operationId": "deleteChat",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Чат успешно удален.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatReadDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Чат не найден.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/chat/{chatId}/messages/{id}": {
+      "get": {
+        "tags": [
+          "chat messages"
+        ],
+        "summary": "Получить информацию об сообщение чата",
+        "description": "Этот эндпоинт позволяет получить информацию об сообщение чата по его уникальному идентификатору.",
+        "operationId": "getChatMessage",
+        "parameters": [
+          {
+            "name": "chatId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Сообщение Чата не найден.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Сообщение Чата успешно получен.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatMessageReadDTO"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Неверный формат запроса или ошибка валидации.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "chat messages"
+        ],
+        "summary": "Обновить информацию об сообщение чата",
+        "description": "Этот эндпоинт позволяет обновить информацию об сообщение чата по его уникальному идентификатору.",
+        "operationId": "updateChatMessage",
+        "parameters": [
+          {
+            "name": "chatId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatMessageCreateUpdateDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Сообщение Чата успешно обновлен.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatMessageReadDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Сообщение Чата не найден.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Неверный формат запроса или ошибка валидации.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "chat messages"
+        ],
+        "summary": "Удалить сообщение чата",
+        "description": "Этот эндпоинт позволяет удалить сообщение чата.",
+        "operationId": "deleteChatMessage",
+        "parameters": [
+          {
+            "name": "chatId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Сообщение Чата не найден.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Сообщение Чата успешно удален.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatMessageReadDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/causes/{id}": {
+      "get": {
+        "tags": [
+          "causes"
+        ],
+        "summary": "Получить информацию об причине инцидента",
+        "description": "Этот эндпоинт позволяет получить информацию об причине инцидента по её уникальному идентификатору.",
+        "operationId": "getCause",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Причина инцидента успешно получена.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CauseReadDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Причина инцидента не найдена.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Неверный формат запроса или ошибка валидации.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "causes"
+        ],
+        "summary": "Обновить информацию об причине инцидента",
+        "description": "Этот эндпоинт позволяет обновить информацию об причине инцидента по её уникальному идентификатору.",
+        "operationId": "updateCause",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CauseUpdateDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Причина инцидента успешно обновлена.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CauseReadDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Причина инцидента не найдено.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Неверный формат запроса или ошибка валидации.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "causes"
+        ],
+        "summary": "Удалить причину инцидента",
+        "description": "Этот эндпоинт позволяет удалить причину инцидента.",
+        "operationId": "deleteCause",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Причина инцидента не найдена.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Причина инцидента успешно удалена.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CauseReadDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/solutions": {
+      "get": {
+        "tags": [
+          "solutions"
+        ],
+        "summary": "Получить список всех решений",
+        "description": "Этот эндпоинт позволяет получить информацию о всех решениях.",
+        "operationId": "getAllSolutions",
+        "responses": {
+          "200": {
+            "description": "Успех.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SolutionReadDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "solutions"
+        ],
+        "summary": "Создать решение",
+        "description": "Этот эндпоинт позволяет создать новое решение.",
+        "operationId": "createSolution",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SolutionCreateDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "403": {
+            "description": "Неверный формат запроса или ошибка валидации.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Решение успешно добавлено.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SolutionReadDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/journals": {
+      "get": {
+        "tags": [
+          "journals"
+        ],
+        "summary": "Получить список всех инцидентов",
+        "description": "Этот эндпоинт позволяет получить информацию о всех инцидентах.",
+        "operationId": "getAllJournals",
+        "responses": {
+          "200": {
+            "description": "Успех.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JournalReadDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "journals"
+        ],
+        "summary": "Создать причину инцидента",
+        "description": "Этот эндпоинт позволяет создать новую причину инцидента.",
+        "operationId": "createJournal",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JournalCreateDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Инцидент успешно добавлен.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JournalReadDTO"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Неверный формат запроса или ошибка валидации.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/incidents": {
+      "get": {
+        "tags": [
+          "incidents"
+        ],
+        "summary": "Получить список всех инцидентов",
+        "description": "Этот эндпоинт позволяет получить информацию о всех инцидентах.",
+        "operationId": "getAllIncidents",
+        "responses": {
+          "200": {
+            "description": "Успех.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IncidentReadDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "incidents"
+        ],
+        "summary": "Создать инцидент",
+        "description": "Этот эндпоинт позволяет создать новый инцидент.",
+        "operationId": "createIncident",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IncidentCreateDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "403": {
+            "description": "Неверный формат запроса или ошибка валидации.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Инцидент успешно добавлен.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IncidentReadDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/chats": {
+      "get": {
+        "tags": [
+          "chats"
+        ],
+        "summary": "Получить список всех чатов",
+        "description": "Этот эндпоинт позволяет получить информацию о всех чатах.",
+        "operationId": "getAllChats",
+        "responses": {
+          "200": {
+            "description": "Успех.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatReadDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "chats"
+        ],
+        "summary": "Создать чат",
+        "description": "Этот эндпоинт позволяет создать новый чат.",
+        "operationId": "createChat",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatCreateDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Чат успешно добавлен.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatReadDTO"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Неверный формат запроса или ошибка валидации.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/chat/{chatId}/messages": {
+      "get": {
+        "tags": [
+          "chat messages"
+        ],
+        "summary": "Получить список всех сообщение чата",
+        "description": "Этот эндпоинт позволяет получить информацию о всех сообщение чатах.",
+        "operationId": "getAllChatMessages",
+        "parameters": [
+          {
+            "name": "chatId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Успех.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatMessageReadDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "chat messages"
+        ],
+        "summary": "Создать сообщение чата",
+        "description": "Этот эндпоинт позволяет создать новый сообщение чата.",
+        "operationId": "createChatMessage",
+        "parameters": [
+          {
+            "name": "chatId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatMessageCreateUpdateDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Сообщение Чата успешно добавлен.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatMessageReadDTO"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Неверный формат запроса или ошибка валидации.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/causes": {
+      "get": {
+        "tags": [
+          "causes"
+        ],
+        "summary": "Получить список всех причин инцидентов",
+        "description": "Этот эндпоинт позволяет получить информацию о всех причинах инцидентов.",
+        "operationId": "getAllCauses",
+        "responses": {
+          "200": {
+            "description": "Успех.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CauseReadDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "causes"
+        ],
+        "summary": "Создать причину инцидента",
+        "description": "Этот эндпоинт позволяет создать новую причину инцидента.",
+        "operationId": "createCause",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CauseCreateDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Причина инцидента успешно добавлена.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CauseReadDTO"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Неверный формат запроса или ошибка валидации.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Причина инцидента с таким названием уже существует.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/sign-up": {
+      "post": {
+        "tags": [
+          "authentication-controller"
+        ],
+        "summary": "Регистрация нового пользователя",
+        "description": "Эндпоинт для регистрации нового пользователя. При успешной регистрации возвращает JWT-токен для авторизации.",
+        "operationId": "signUp",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignUpRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "403": {
+            "description": "Нарушена структура объекта или данные объекта не валидны.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Пользователь успешно зарегистрирован.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JwtAuthenticationResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Пользователь уже существует.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/sign-in": {
+      "post": {
+        "tags": [
+          "authentication-controller"
+        ],
+        "summary": "Авторизация пользователя",
+        "description": "Эндпоинт для входа пользователя с использованием предоставленных учетных данных. Возвращает JWT токен для авторизации.",
+        "operationId": "signIn",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignInRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "404": {
+            "description": "Пользователь не найден.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Пользователь успешно авторизован.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JwtAuthenticationResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Нарушена структура объекта или данные объекта не валидны.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UserUpdateDTO": {
+        "required": [
+          "email",
+          "firstName",
+          "lastName",
+          "middleName",
+          "username"
+        ],
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "middleName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "enum": [
+              "DATA_NOT_FOUND",
+              "DATA_ALREADY_EXISTS",
+              "VALIDATION_ERROR",
+              "JSON_NOT_READABLE"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "UserReadDTO": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "ROLE_CUSTOMER",
+              "ROLE_SERVICE_DESK_EMPLOYEE",
+              "ROLE_IT_SUPPORT_EMPLOYEE",
+              "ROLE_INCIDENT_SPECIALIST"
+            ]
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "middleName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          }
+        }
+      },
+      "SolutionUpdateDTO": {
+        "type": "object",
+        "properties": {
+          "incidentId": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "SolutionReadDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "JournalUpdateDTO": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "JournalReadDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "IncidentUpdateDTO": {
+        "type": "object"
+      },
+      "CauseReadDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "IncidentReadDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "solution": {
+            "$ref": "#/components/schemas/SolutionReadDTO"
+          },
+          "cause": {
+            "$ref": "#/components/schemas/CauseReadDTO"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "NEW",
+              "RESOLVED",
+              "IN_PROGRESS"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "TYPE1",
+              "TYPE2"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ChatUpdateDTO": {
+        "type": "object",
+        "properties": {
+          "respondentId": {
+            "type": "string"
+          }
+        }
+      },
+      "ChatReadDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "incidentId": {
+            "type": "string"
+          },
+          "reporterId": {
+            "type": "string"
+          },
+          "respondentId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "ChatMessageCreateUpdateDTO": {
+        "type": "object",
+        "properties": {
+          "chatId": {
+            "type": "string"
+          },
+          "senderId": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          }
+        }
+      },
+      "ChatMessageReadDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "chat": {
+            "$ref": "#/components/schemas/ChatReadDTO"
+          },
+          "senderId": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "isRead": {
+            "type": "boolean"
+          }
+        }
+      },
+      "CauseUpdateDTO": {
+        "required": [
+          "description",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "SolutionCreateDTO": {
+        "type": "object",
+        "properties": {
+          "incidentId": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "JournalCreateDTO": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "IncidentCreateDTO": {
+        "required": [
+          "description",
+          "title",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "TYPE1",
+              "TYPE2"
+            ]
+          }
+        }
+      },
+      "ChatCreateDTO": {
+        "type": "object",
+        "properties": {
+          "incidentId": {
+            "type": "string"
+          },
+          "reporterId": {
+            "type": "string"
+          },
+          "respondentId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "CauseCreateDTO": {
+        "required": [
+          "description",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "SignUpRequest": {
+        "required": [
+          "email",
+          "firstName",
+          "lastName",
+          "password",
+          "username"
+        ],
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "middleName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          }
+        }
+      },
+      "JwtAuthenticationResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "SignInRequest": {
+        "required": [
+          "password",
+          "username"
+        ],
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "description": "Enter your JWT token in the format: Bearer \u003Ctoken\u003E",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
