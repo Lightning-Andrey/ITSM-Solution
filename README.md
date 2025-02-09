@@ -31,16 +31,21 @@
 ### Нотация C4
 
 Контейнерный уровень:
+![image](https://github.com/user-attachments/assets/44effde6-dce5-41d9-8af5-4056439ed4c4)
 
 Компонентный уровень:
+![image](https://github.com/user-attachments/assets/91768d9c-54e4-4dc6-9295-151b624bcef7)
 
 ### UML
 
 ### Схема БД
+![image](https://github.com/user-attachments/assets/0324e6cf-add6-4045-bbe1-99a8c7dcd441)
 
 ### Диаграмма классов
+![image](https://github.com/user-attachments/assets/93cf20f6-2fa0-4604-ac97-58e290fa3857)
 
 ### Дизайн
+![image](https://github.com/user-attachments/assets/3e498278-fd77-498c-b78e-223f23afc22d)
 
 ## Пользовательский интерфейс
 
