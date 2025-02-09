@@ -57,6 +57,7 @@
 ## Документация
 
 ### API
+https://github.com/Lightning-Andrey/ITSM-Solution/blob/develop/api-docs.json
 
 ## Тестирование
 
