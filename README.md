@@ -37,6 +37,9 @@
 ![image](https://github.com/user-attachments/assets/91768d9c-54e4-4dc6-9295-151b624bcef7)
 
 ### UML
+![image](https://github.com/user-attachments/assets/5898af2a-cbd2-4743-bb18-169795e19783)
+![image](https://github.com/user-attachments/assets/b1d6193e-17d5-4eea-9436-a3bee833efd1)
+
 
 ### Схема БД
 ![image](https://github.com/user-attachments/assets/0324e6cf-add6-4045-bbe1-99a8c7dcd441)
