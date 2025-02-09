@@ -1,16 +1,13 @@
-package by.itsm.cause.dto;
+package by.itsm.incident.dto;
 
 import java.time.LocalDateTime;
 import lombok.Data;
 
 @Data
-public class CauseReadDTO {
-
+public class JournalReadDTO {
   private String id;
-  private String name;
-
+  private String title;
   private String description;
-
   private LocalDateTime createdAt;
   private LocalDateTime updatedAt;
 }

@@ -11,6 +11,7 @@ import by.itsm.exception.DataNotFoundException;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
@@ -20,16 +21,18 @@ public class CauseService {
   private CauseMapper causeMapper;
   private CauseRepository causeRepository;
 
-  public Cause saveCause(Cause cause) {
+  private Cause saveCause(Cause cause) {
     return causeRepository.save(cause);
   }
 
+  @Transactional
   public CauseReadDTO createCause(CauseCreateDTO dto) {
     if (causeRepository.existsByName(dto.getName()))
       throw new DataAlreadyExistsException("Причина с таким именем уже существует");
     return causeMapper.toDto(saveCause(causeMapper.toEntity(dto)));
   }
 
+  @Transactional
   public CauseReadDTO updateCause(String id, CauseUpdateDTO dto) {
     Cause updatedCause =
         causeRepository.findById(id).orElseThrow(() -> new DataNotFoundException(CAUSE_NOT_FOUND));
@@ -37,16 +40,19 @@ public class CauseService {
     return causeMapper.toDto(saveCause(updatedCause));
   }
 
+  @Transactional
   public CauseReadDTO getCause(String id) {
     Cause existingCause =
         causeRepository.findById(id).orElseThrow(() -> new DataNotFoundException(CAUSE_NOT_FOUND));
     return causeMapper.toDto(existingCause);
   }
 
+  @Transactional
   public List<CauseReadDTO> getAllCauses() {
     return causeRepository.findAll().stream().map(causeMapper::toDto).toList();
   }
 
+  @Transactional
   public void deleteCause(String id) {
     if (!causeRepository.existsById(id)) throw new DataNotFoundException(CAUSE_NOT_FOUND);
     causeRepository.deleteById(id);

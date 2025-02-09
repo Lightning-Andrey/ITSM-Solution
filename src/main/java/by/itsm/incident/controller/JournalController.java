@@ -1,10 +1,10 @@
-package by.itsm.cause.controller;
+package by.itsm.incident.controller;
 
-import by.itsm.cause.dto.CauseCreateDTO;
-import by.itsm.cause.dto.CauseReadDTO;
-import by.itsm.cause.dto.CauseUpdateDTO;
-import by.itsm.cause.service.CauseService;
 import by.itsm.exception.handler.ErrorResponse;
+import by.itsm.incident.dto.JournalCreateDTO;
+import by.itsm.incident.dto.JournalReadDTO;
+import by.itsm.incident.dto.JournalUpdateDTO;
+import by.itsm.incident.service.JournalService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -20,25 +20,25 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/causes")
+@RequestMapping("/api/journals")
 @AllArgsConstructor
-@Tag(name = "causes", description = "Операции с причинами инцидентов")
-public class CauseController {
-  private CauseService causeService;
+@Tag(name = "journals", description = "Операции с журналами инцидентов")
+public class JournalController {
+  private JournalService journalService;
 
   @PreAuthorize("isAuthenticated()")
   @GetMapping("{id}")
   @Operation(
-      summary = "Получить информацию об причине инцидента",
+      summary = "Получить информацию об инциденте",
       description =
-          "Этот эндпоинт позволяет получить информацию об причине инцидента по её уникальному идентификатору.")
+          "Этот эндпоинт позволяет получить информацию об инциденте по его уникальному идентификатору.")
   @ApiResponse(
       responseCode = "200",
-      description = "Причина инцидента успешно получена.",
+      description = "Инцидент успешно получен.",
       content =
           @Content(
               mediaType = MediaType.APPLICATION_JSON_VALUE,
-              schema = @Schema(implementation = CauseReadDTO.class)))
+              schema = @Schema(implementation = JournalReadDTO.class)))
   @ApiResponse(
       responseCode = "403",
       description = "Неверный формат запроса или ошибка валидации.",
@@ -48,13 +48,13 @@ public class CauseController {
               schema = @Schema(implementation = ErrorResponse.class)))
   @ApiResponse(
       responseCode = "404",
-      description = "Причина инцидента не найдена.",
+      description = "Инцидент не найден.",
       content =
           @Content(
               mediaType = MediaType.APPLICATION_JSON_VALUE,
               schema = @Schema(implementation = ErrorResponse.class)))
-  public ResponseEntity<CauseReadDTO> getCause(@PathVariable String id) {
-    return new ResponseEntity<>(causeService.getCause(id), HttpStatus.OK);
+  public ResponseEntity<JournalReadDTO> getJournal(@PathVariable String id) {
+    return new ResponseEntity<>(journalService.getJournal(id), HttpStatus.OK);
   }
 
   @PreAuthorize("isAuthenticated()")
@@ -64,11 +64,11 @@ public class CauseController {
       description = "Этот эндпоинт позволяет создать новую причину инцидента.")
   @ApiResponse(
       responseCode = "201",
-      description = "Причина инцидента успешно добавлена.",
+      description = "Инцидент успешно добавлен.",
       content =
           @Content(
               mediaType = MediaType.APPLICATION_JSON_VALUE,
-              schema = @Schema(implementation = CauseReadDTO.class)))
+              schema = @Schema(implementation = JournalReadDTO.class)))
   @ApiResponse(
       responseCode = "403",
       description = "Неверный формат запроса или ошибка валидации.",
@@ -76,30 +76,23 @@ public class CauseController {
           @Content(
               mediaType = MediaType.APPLICATION_JSON_VALUE,
               schema = @Schema(implementation = ErrorResponse.class)))
-  @ApiResponse(
-      responseCode = "409",
-      description = "Причина инцидента с таким названием уже существует.",
-      content =
-          @Content(
-              mediaType = MediaType.APPLICATION_JSON_VALUE,
-              schema = @Schema(implementation = ErrorResponse.class)))
-  public ResponseEntity<CauseReadDTO> createCause(@RequestBody @Valid CauseCreateDTO dto) {
-    return new ResponseEntity<>(causeService.createCause(dto), HttpStatus.CREATED);
+  public ResponseEntity<JournalReadDTO> createJournal(@RequestBody @Valid JournalCreateDTO dto) {
+    return new ResponseEntity<>(journalService.createJournal(dto), HttpStatus.CREATED);
   }
 
   @PreAuthorize("isAuthenticated()")
   @PutMapping("/{id}")
   @Operation(
-      summary = "Обновить информацию об причине инцидента",
+      summary = "Обновить информацию об инциденте",
       description =
-          "Этот эндпоинт позволяет обновить информацию об причине инцидента по её уникальному идентификатору.")
+          "Этот эндпоинт позволяет обновить информацию об инциденте по его уникальному идентификатору.")
   @ApiResponse(
       responseCode = "200",
-      description = "Причина инцидента успешно обновлена.",
+      description = "Инцидент успешно обновлен.",
       content =
           @Content(
               mediaType = MediaType.APPLICATION_JSON_VALUE,
-              schema = @Schema(implementation = CauseReadDTO.class)))
+              schema = @Schema(implementation = JournalReadDTO.class)))
   @ApiResponse(
       responseCode = "403",
       description = "Неверный формат запроса или ошибка валидации.",
@@ -109,53 +102,53 @@ public class CauseController {
               schema = @Schema(implementation = ErrorResponse.class)))
   @ApiResponse(
       responseCode = "404",
-      description = "Причина инцидента не найдено.",
+      description = "Инцидент не найден.",
       content =
           @Content(
               mediaType = MediaType.APPLICATION_JSON_VALUE,
               schema = @Schema(implementation = ErrorResponse.class)))
-  public ResponseEntity<CauseReadDTO> updateCause(
-      @PathVariable String id, @RequestBody @Valid CauseUpdateDTO dto) {
-    return new ResponseEntity<>(causeService.updateCause(id, dto), HttpStatus.OK);
+  public ResponseEntity<JournalReadDTO> updateJournal(
+      @PathVariable String id, @RequestBody @Valid JournalUpdateDTO dto) {
+    return new ResponseEntity<>(journalService.updateJournal(id, dto), HttpStatus.OK);
   }
 
   @PreAuthorize("isAuthenticated()")
   @GetMapping
   @Operation(
-      summary = "Получить список всех причин инцидентов",
-      description = "Этот эндпоинт позволяет получить информацию о всех причинах инцидентов.")
+      summary = "Получить список всех инцидентов",
+      description = "Этот эндпоинт позволяет получить информацию о всех инцидентах.")
   @ApiResponse(
       responseCode = "200",
       description = "Успех.",
       content =
           @Content(
               mediaType = MediaType.APPLICATION_JSON_VALUE,
-              schema = @Schema(implementation = CauseReadDTO.class)))
-  public ResponseEntity<List<CauseReadDTO>> getAllCauses() {
-    return ResponseEntity.ok(causeService.getAllCauses());
+              schema = @Schema(implementation = JournalReadDTO.class)))
+  public ResponseEntity<List<JournalReadDTO>> getAllJournals() {
+    return ResponseEntity.ok(journalService.getAllJournals());
   }
 
   @PreAuthorize("isAuthenticated()")
   @DeleteMapping("/{id}")
   @Operation(
-      summary = "Удалить причину инцидента",
-      description = "Этот эндпоинт позволяет удалить причину инцидента.")
+      summary = "Удалить инцидент",
+      description = "Этот эндпоинт позволяет удалить инцидент.")
   @ApiResponse(
       responseCode = "204",
-      description = "Причина инцидента успешно удалена.",
+      description = "Инцидент успешно удален.",
       content =
           @Content(
               mediaType = MediaType.APPLICATION_JSON_VALUE,
-              schema = @Schema(implementation = CauseReadDTO.class)))
+              schema = @Schema(implementation = JournalReadDTO.class)))
   @ApiResponse(
       responseCode = "404",
-      description = "Причина инцидента не найдена.",
+      description = "Инцидент не найден.",
       content =
           @Content(
               mediaType = MediaType.APPLICATION_JSON_VALUE,
               schema = @Schema(implementation = ErrorResponse.class)))
-  public ResponseEntity<Void> deleteCause(@PathVariable String id) {
-    causeService.deleteCause(id);
+  public ResponseEntity<Void> deleteJournal(@PathVariable String id) {
+    journalService.deleteJournal(id);
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
 }

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table
+@Table(name = "causes")
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class Cause extends BaseEntity {
@@ -18,6 +18,6 @@ public class Cause extends BaseEntity {
   @Column(nullable = false)
   private String name;
 
-  @Column(nullable = false)
+  @Column(nullable = false, columnDefinition = "text")
   private String description;
 }

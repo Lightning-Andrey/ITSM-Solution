@@ -1,16 +1,12 @@
-package by.itsm.cause.dto;
+package by.itsm.solution.dto;
 
 import java.time.LocalDateTime;
 import lombok.Data;
 
 @Data
-public class CauseReadDTO {
-
+public class SolutionReadDTO {
   private String id;
-  private String name;
-
   private String description;
-
   private LocalDateTime createdAt;
   private LocalDateTime updatedAt;
 }
