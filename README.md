@@ -39,7 +39,7 @@
 ### UML
 ![image](https://github.com/user-attachments/assets/5898af2a-cbd2-4743-bb18-169795e19783)
 ![image](https://github.com/user-attachments/assets/b1d6193e-17d5-4eea-9436-a3bee833efd1)
-
+![image](https://github.com/user-attachments/assets/3e0aef96-bb87-413e-b364-4f3a79fceabe)
 
 ### Схема БД
 ![image](https://github.com/user-attachments/assets/0324e6cf-add6-4045-bbe1-99a8c7dcd441)
@@ -51,6 +51,7 @@
 ![image](https://github.com/user-attachments/assets/3e498278-fd77-498c-b78e-223f23afc22d)
 
 ## Пользовательский интерфейс
+![image](https://github.com/user-attachments/assets/8fb87014-8280-401c-a361-ee48d9ef7d5e)
 
 ### User-Flow
 
