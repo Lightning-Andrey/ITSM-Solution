@@ -54,6 +54,10 @@
 ![image](https://github.com/user-attachments/assets/8fb87014-8280-401c-a361-ee48d9ef7d5e)
 
 ### User-Flow
+![image](https://github.com/user-attachments/assets/9a23cfac-1008-4152-8b08-806ebd596354)
+![image](https://github.com/user-attachments/assets/12c111f0-e1e3-42b6-b49f-f4c590e1783e)
+![image](https://github.com/user-attachments/assets/6498001c-7bad-4ecd-bf3b-cdea4ff0aea2)
+![image](https://github.com/user-attachments/assets/b9120105-aef4-4f71-a1bc-d7bfc6a59995)
 
 ## Документация
 
