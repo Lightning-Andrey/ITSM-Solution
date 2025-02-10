@@ -51,8 +51,6 @@
 ![image](https://github.com/user-attachments/assets/3e498278-fd77-498c-b78e-223f23afc22d)
 
 ## Пользовательский интерфейс
-![image](https://github.com/user-attachments/assets/8fb87014-8280-401c-a361-ee48d9ef7d5e)
-
 ### User-Flow
 ![image](https://github.com/user-attachments/assets/9a23cfac-1008-4152-8b08-806ebd596354)
 ![image](https://github.com/user-attachments/assets/12c111f0-e1e3-42b6-b49f-f4c590e1783e)
